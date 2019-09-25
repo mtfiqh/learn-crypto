@@ -2,6 +2,7 @@
 # 14116162
 # mtfiqh[at]gmail[dot]com
 
+# --------------------------------CORE-------------------------------
 def charToDecimal(char):
     return ord(char)
 
@@ -68,11 +69,49 @@ def decrypt(encryptText, key):
     
     return decryptText
 
+# ---------------------------------- END CORE ---------------------------
 
-plainText = input("Enter text to encrypt: ")
+while (1):
+    print('1.   Load text from file')
+    print('2.   Input text from keyboard')
+    choice = input('Choice: ')
+    if choice == '1':
+        try:
+            file_name = input("Your file name, include extension (ex: file.txt): ")
+            file = open(file_name, 'r')
+            plainText = print(file.read())
+            file.close()
+            if plainText:
+                break
+            else:
+                print('The file is empty!')
+                print('')
+        except Exception as e:
+            print('error: ', e)
+            print('')
+
+    elif choice == '2':
+        plainText = input("Enter text to encrypt: ")
+        break
+    else:
+        print('Your choice is wrong !')
+    
+
 key = input("Enter the key: ")
-
+# removing spaces in key
+key = key.replace(' ','')
+print('')
+print('')
+print('Plain Text   = ', plainText)
+print('Key          =', key)
+print('=============================')
 encrypted = (encrypt(plainText, key))
-print(encrypted)
+print('Encrypt Text = ', encrypted)
 decrypted = decrypt(encrypted, key)
-print(decrypted)
+print('Decrypt Text = ',decrypted)
+
+# save file
+file = open('Vigenere Encrypt Text.txt', "w+")
+file.write(encrypted)
+file.close()
+print('Encrypted text saved in "Vigenere Encrypt Text.txt"')

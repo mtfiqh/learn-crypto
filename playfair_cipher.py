@@ -23,18 +23,33 @@ def createKey(keyText):
 # huruf J diganti dengan I
 # Jika huruf berjumlah ganjil sisipkan Z
 def splitText(text):
+    text = text.replace(" ","")
     idx = 0
     split=[]
     while idx in range (len(text)):
+        temp = text[idx]
+        if text[idx] =='J':
+            temp='I'
         if idx+1 != (len(text)) and text[idx] == text[idx+1]:
-            split.append(text[idx]+'X')
+            split.append(temp+'X')
             idx=idx+1
         elif idx==(len(text)-1):
-            split.append(text[idx]+'Z')
+            split.append(temp+'Z')
             idx=idx+1
         else:
-            split.append(text[idx]+text[idx+1])
+            temp2 = text[idx+1]
+            if text[idx+1] == 'J':
+                temp2 = 'I'
+            split.append(temp+text[idx+1])
             idx=idx+2
     
     return split
 
+print(splitText('JJAWA TENGAH'))
+def encrypt(text, key):
+    splitText = splitText(text)
+    key = createKey(key)
+
+    # jika sama kolom
+
+    

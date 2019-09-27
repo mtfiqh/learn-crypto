@@ -72,14 +72,14 @@ def decrypt(encryptText, key):
 # ---------------------------------- END CORE ---------------------------
 
 while (1):
-    print('1.   Load text from file')
-    print('2.   Input text from keyboard')
+    print('1.   Load text from file [Encrypt]')
+    print('2.   Input text from keyboard [Encrypt]')
     choice = input('Choice: ')
     if choice == '1':
         try:
             file_name = input("Your file name, include extension (ex: file.txt): ")
             file = open(file_name, 'r')
-            plainText = print(file.read())
+            plainText = file.read()
             file.close()
             if plainText:
                 break
